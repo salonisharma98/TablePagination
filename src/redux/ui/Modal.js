@@ -1,80 +1,69 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
-
-function rand() {
-  return Math.round(Math.random() * 20) - 10;
-}
-
-function getModalStyle() {
-  const top = 50 + rand();
-  const left = 50 + rand();
-
-  return {
-    top: `${top}%`,
-    left: `${left}%`,
-    transform: `translate(-${top}%, -${left}%)`,
-  };
-}
+import { Button } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    position: 'absolute',
-    width: 400,
     backgroundColor: theme.palette.background.paper,
-    border: '2px solid #000',
-    boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3),
   },
+  modal: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: "#29853ad1",
+    color: "white",
+    width: 400,
+    height: 400,
+    margin: "auto",
+  },
+  btn:{
+    backgroundColor:"white",
+    fontSize:14,
+    '&:hover': {
+      background: "white",
+   },
+   detaiOfUser:{
+     fontSize:"18px"
+   },
+   
+  }
 }));
 
-const SimpleModal=()=> {
-  const classes = useStyles();
-  const [modalStyle] = React.useState(getModalStyle);
-  const [open, setOpen] = React.useState(false);
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const body = (
-    <div style={modalStyle} className={classes.paper}>
-      <h2 id="simple-modal-title">Text in a modal</h2>
-      <p id="simple-modal-description">
-        Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-      </p>
-      <SimpleModal />
-    </div>
-  );
- 
-  const mystate = useSelector((state) => state.userReducer.userinfo)
-  const data = mystate
-  console.log(data, "mystate here")
-  const dispatch = useDispatch();
-
-
-  useEffect(() => {
-    dispatch(fetchDetail())
-  }, [])
-
-  return (
-    <div>
-      <button type="button" onClick={handleOpen}>
-        Open Modal
-      </button>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="simple-modal-title"
-        aria-describedby="simple-modal-description"
-      >
-        {body}
+const ModalComponent=({open, modalInfo,setShow})=>{
+  const classes = useStyles(); 
+  const handleClose = () => setShow(false)
+  const ModalContent = () => {
+    return (
+      <Modal open={open} onClose={handleClose} className={classes.modal}>
+        <div>         
+              <p className={classes.detaiOfUser}>
+                <b>Id:</b> {modalInfo.row.id}
+              </p>      
+              <p className={classes.detaiOfUser}>
+                <b>Name:</b> {modalInfo.row.name}
+              </p>     
+              <p className={classes.detaiOfUser}>
+                <b>UserName:</b> {modalInfo.row.username}
+              </p>       
+              <p className={classes.detaiOfUser}>
+                <b>Contact:</b>{modalInfo.row.phone}
+              </p>            
+              <p className={classes.detaiOfUser}>
+                <b>Works at:</b> {modalInfo.row.company.name}
+              </p>         
+              <p className={classes.detaiOfUser}
+              ><b>Address:</b> {modalInfo.row.address.street} {modalInfo.row.address.suite} {modalInfo.row.address.city}
+              </p>                  
+            <Button className={classes.btn} onClick={handleClose}>Close</Button>        
+        </div>
       </Modal>
-    </div>
-  );
+    )
+  }
+  return (
+   <div>
+       {open ? <ModalContent /> : null}
+   </div>
+  )
 }
-export default SimpleModal;
+export default ModalComponent;

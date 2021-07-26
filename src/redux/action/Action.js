@@ -1,7 +1,6 @@
 import {FETCH_USER_REQUEST,
   FETCH_USER_SUCCESS,
   FETCH_USER_FALIUR} from './ActionTypes';
-  import axios from 'axios'
 
 export const fetchUserRequest=()=>{
   return{
@@ -23,15 +22,15 @@ export const fetchUserFailur=(error)=>{
 export const fetchDetail=()=>{
   return(dispatch)=>{
     dispatch(fetchUserRequest)
-  fetch("https://api.stackexchange.com/2.3/questions?order=desc&sort=activity&site=stackoverflow").then((res)=>res.json()).then((data)=>{
-    console.log(data);
-    const userinfo=data;
-    dispatch(fetchUserSuccess(userinfo))
-    }).catch((error)=>{
-        const errormsg=error.message
-        dispatch(fetchUserFailur(errormsg))
-      })
-  
-  }
-}
+      fetch("https://jsonplaceholder.typicode.com/users").then((res)=>res.json())
+      .then((data)=>{
+        const userinfo=data;
+        dispatch(fetchUserSuccess(userinfo))
+        })
+        .catch((error)=>{
+            const errormsg=error.message
+            dispatch(fetchUserFailur(errormsg))
+          })     
+      }
+    }
 

@@ -2,12 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import {fetchDetail} from './redux/action/Action'
 import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
 import store from './redux/store'
 store.subscribe(()=>console.log(store.getState()));
-// store.dispatch(fetchDetail())
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
