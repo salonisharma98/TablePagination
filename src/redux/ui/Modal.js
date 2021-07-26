@@ -13,8 +13,8 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     backgroundColor: "#29853ad1",
     color: "white",
-    width: 400,
-    height: 400,
+    width: 450,
+    height: 450,
     margin: "auto",
   },
   btn:{
@@ -53,7 +53,7 @@ const ModalComponent=({open, modalInfo,setShow})=>{
                 <b>Works at:</b> {modalInfo.row.company.name}
               </p>         
               <p className={classes.detaiOfUser}
-              ><b>Address:</b> {modalInfo.row.address.street} {modalInfo.row.address.suite} {modalInfo.row.address.city}
+              ><b>Address:</b> {modalInfo.row.address.street} {modalInfo.row.address.suite} 
               </p>                  
             <Button className={classes.btn} onClick={handleClose}>Close</Button>        
         </div>
