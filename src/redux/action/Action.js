@@ -23,15 +23,15 @@ export const fetchUserFailur=(error)=>{
 export const fetchDetail=()=>{
   return(dispatch)=>{
     dispatch(fetchUserRequest)
-    axios.get('https://jsonplaceholder.typicode.com/users')
-    .then(response=>{
-      const userinfo=response.data
-      console.log(userinfo)
-   dispatch(fetchUserSuccess(userinfo)) 
+  fetch("https://api.stackexchange.com/2.3/questions?order=desc&sort=activity&site=stackoverflow").then((res)=>res.json()).then((data)=>{
+    console.log(data);
+    const userinfo=data;
+    dispatch(fetchUserSuccess(userinfo))
     }).catch((error)=>{
-      const errormsg=error.message
-      dispatch(fetchUserFailur(errormsg))
-    })
+        const errormsg=error.message
+        dispatch(fetchUserFailur(errormsg))
+      })
+  
   }
-  }
+}
 

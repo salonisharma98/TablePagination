@@ -4,7 +4,7 @@ import {FETCH_USER_REQUEST,
   FETCH_USER_FALIUR} from '../action/ActionTypes';
 
 const initialstate={
-  userinfo:[],
+  userinfo:{},
   error:"",
   isloading:true
 }
@@ -15,7 +15,7 @@ export const Reducer=(state=initialstate,action)=>{
     case FETCH_USER_REQUEST:
       return{
         isloading:true,
-        userinfo:[]
+        userinfo:{}
       }
     case FETCH_USER_SUCCESS:
       return {
@@ -26,7 +26,7 @@ export const Reducer=(state=initialstate,action)=>{
     case FETCH_USER_FALIUR:
       return{
         isloading:false,
-        userinfo:[],
+        userinfo:{},
         error:action.payload,
       }
       default:

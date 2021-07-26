@@ -1,12 +1,10 @@
-import React from 'react';
-import ServerSide from './redux/ui/ServerSide';
-
-function App() {
+import React, { useState } from 'react';
+import ApiData from './redux/ui/ApiData';
+function App() {  
   return (
     <div>  
-     <ServerSide/>
+     <ApiData/>
     </div>
-  );
+  )
 }
-
-export default App;
+export default App
