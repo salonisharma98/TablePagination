@@ -38,22 +38,22 @@ const ModalComponent=({open, modalInfo,setShow})=>{
       <Modal open={open} onClose={handleClose} className={classes.modal}>
         <div>         
               <p className={classes.detaiOfUser}>
-                <b>Id:</b> {modalInfo.row.id}
+                <b>Id:</b> {modalInfo.id}
               </p>      
               <p className={classes.detaiOfUser}>
-                <b>Name:</b> {modalInfo.row.name}
-              </p>     
+                <b>Name:</b> {modalInfo.name}
+              </p>
               <p className={classes.detaiOfUser}>
-                <b>UserName:</b> {modalInfo.row.username}
+                <b>UserName:</b> {modalInfo.username}
               </p>       
               <p className={classes.detaiOfUser}>
-                <b>Contact:</b>{modalInfo.row.phone}
+                <b>Contact:</b>{modalInfo.phone}
               </p>            
               <p className={classes.detaiOfUser}>
-                <b>Works at:</b> {modalInfo.row.company.name}
+                <b>Works at:</b> {modalInfo.company.name}
               </p>         
               <p className={classes.detaiOfUser}
-              ><b>Address:</b> {modalInfo.row.address.street} {modalInfo.row.address.suite} 
+              ><b>Address:</b> {modalInfo.address.street} {modalInfo.address.suite} 
               </p>                  
             <Button className={classes.btn} onClick={handleClose}>Close</Button>        
         </div>
